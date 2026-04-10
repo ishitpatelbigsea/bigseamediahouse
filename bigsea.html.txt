@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BigSea Media House — Premier Media & Influencer Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --cyan: #00f2ff;
+    --purple: #8257e5;
+    --pink: #ff005c;
+    --dark: #03030b;
+    --dark-accent: #0a0a1a;
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--dark);
+    color: #fff;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Fix for Cursor Glitch */
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: var(--cyan);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease;
+}
+
+.bg-stars { position: fixed; inset: 0; z-index: -1; opacity: 0.6; }
+
+/* Redesigned Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    height: 80px;
+    background: rgba(3, 3, 11, 0.7);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-brand { display: flex; align-items: center; gap: 15px; }
+.nav-logo { width: 45px; height: 45px; border-radius: 12px; box-shadow: 0 0 20px rgba(0, 242, 255, 0.3); }
+
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a { 
+    text-decoration: none; 
+    color: #ccc; 
+    font-size: 14px; 
+    font-weight: 500; 
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+.nav-links a:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+
+.btn-cta {
+    background: linear-gradient(135deg, var(--purple), var(--cyan));
+    border: none;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Redesigned Hero Section */
+.hero {
+    position: relative;
+    padding: 180px 60px 100px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.hero-content h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 10vw, 160px);
+    line-height: 0.85;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+}
+
+.hero-content .highlight {
+    background: linear-gradient(to right, var(--cyan), var(--purple), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 3D Floating Element */
+.media-sphere-container {
+    position: relative;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.media-sphere {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle at 30% 30%, var(--cyan), var(--purple));
+    border-radius: 50%;
+    box-shadow: 0 0 100px rgba(0, 242, 255, 0.4);
+    animation: float 6s ease-in-out infinite;
+    position: relative;
+}
+
+.media-sphere::after {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: spin 20s linear infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Influencer Grid Redesign */
+.section-header { text-align: center; margin-bottom: 60px; }
+.inf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    padding: 0 60px;
+}
+
+.inf-card {
+    background: var(--dark-accent);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 20px;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.inf-card:hover {
+    transform: translateY(-15px);
+    border-color: var(--cyan);
+    background: rgba(255,255,255,0.05);
+}
+
+.inf-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: 18px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+/* Leadership Section */
+.leaders-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 80px;
+}
+
+.lcard {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    padding: 40px;
+    border-radius: 30px;
+    text-align: center;
+    width: 300px;
+}
+
+.lc-avi {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 3px solid var(--cyan);
+}
+
+/* Footer */
+footer {
+    padding: 100px 60px 40px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="custom-cursor" id="cursor"></div>
+<canvas class="bg-stars" id="stars"></canvas>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo" style="background: var(--cyan);"></div>
+    <span style="font-family: 'Bebas Neue'; font-size: 24px;">BIGSEA</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#marketplace">MARKETPLACE</a></li>
+    <li><a href="#about">ABOUT US</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+  <button class="btn-cta">PARTNER WITH US</button>
+</nav>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>BEYOND THE <br> <span class="highlight">DIGITAL OCEAN</span></h1>
+        <p style="font-size: 20px; color: #888; max-width: 600px;">
+            BigSea Media House is the premium marketplace where elite influencers meet global brands to create cinematic waves in the digital world.
+        </p>
+        <div style="margin-top: 40px; display: flex; gap: 20px;">
+            <button class="btn-cta" style="padding: 18px 40px;">EXPLORE TALENT</button>
+            <button style="background: transparent; color: white; border: 1px solid white; padding: 18px 40px; border-radius: 8px; font-weight: bold; cursor: pointer;">OUR WORKS</button>
+        </div>
+    </div>
+    <div class="media-sphere-container">
+        <div class="media-sphere"></div>
+    </div>
+</section>
+
+<section id="marketplace" style="padding: 100px 0;">
+    <div class="section-header">
+        <h2 style="font-family: 'Bebas Neue'; font-size: 60px;">TOP CREATORS</h2>
+        <p style="color: var(--cyan);">PREMIUM NETWORK</p>
+    </div>
+    <div class="inf-grid">
+        <div class="inf-card">
+            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=400" class="inf-img" alt="Talent">
+            <h3>Siddharth S.</h3>
+            <p style="color: #666; font-size: 14px;">Lifestyle & Fashion • 1.2M Reach</p>
+            <button class="btn-cta" style="width: 100%; margin-top: 20px;">VIEW PROFILE</button>
+        </div>
+        <div class="inf-card">
+            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&q=80&w=400" class="inf-img" alt="Talent">
+            <h3>Ananya V.</h3>
+            <p style="color: #666; font-size: 14px;">Fitness & Wellness • 800K Reach</p>
+            <button class="btn-cta" style="width: 100%; margin-top: 20px;">VIEW PROFILE</button>
+        </div>
+        <div class="inf-card">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" class="inf-img" alt="Talent">
+            <h3>Rohan K.</h3>
+            <p style="color: #666; font-size: 14px;">Tech & Gaming • 2.5M Reach</p>
+            <button class="btn-cta" style="width: 100%; margin-top: 20px;">VIEW PROFILE</button>
+        </div>
+    </div>
+</section>
+
+<section id="about" style="padding: 100px 0; background: var(--dark-accent);">
+    <div class="section-header">
+        <h2 style="font-family: 'Bebas Neue'; font-size: 60px;">THE VISIONARIES</h2>
+    </div>
+    <div class="leaders-wrap">
+        <div class="lcard">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200" class="lc-avi" alt="Leader">
+            <h3>Dinesh K.</h3>
+            <p style="color: var(--cyan); font-weight: bold;">FOUNDER</p>
+        </div>
+        <div class="lcard">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200" class="lc-avi" alt="Leader">
+            <h3>Kishor R.</h3>
+            <p style="color: var(--cyan); font-weight: bold;">DIRECTOR</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <h2 style="font-family: 'Bebas Neue'; font-size: 40px; margin-bottom: 20px;">BIGSEA MEDIA HOUSE</h2>
+    <p style="color: #666;">Gujarat Based Agency • Serving Globally</p>
+    <div style="margin: 30px 0; display: flex; justify-content: center; gap: 30px;">
+        <a href="#" style="color: white; text-decoration: none;">INSTAGRAM</a>
+        <a href="#" style="color: white; text-decoration: none;">TWITTER</a>
+        <a href="#" style="color: white; text-decoration: none;">LINKEDIN</a>
+    </div>
+    <p style="font-size: 12px; color: #444;">&copy; 2026 BigSea Media House. All Rights Reserved.</p>
+</footer>
+
+<script>
+// Smooth Custom Cursor
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+// Interactive Starfield
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+let w, h, stars = [];
+
+function init() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    stars = [];
+    for(let i=0; i<150; i++) {
+        stars.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: Math.random() * 1.5,
+            v: Math.random() * 0.5
+        });
+    }
+}
+
+function draw() {
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle = "#fff";
+    stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fill();
+        s.y -= s.v;
+        if(s.y < 0) s.y = h;
+    });
+    requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', init);
+init();
+draw();
+</script>
+
+</body>
+</html>
